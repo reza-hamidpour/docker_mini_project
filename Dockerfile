@@ -10,4 +10,4 @@ COPY . .
 
 EXPOSE 3000
 
-CMD ['node', 'web_server.js']
+CMD ["node", "web_server.js"]
