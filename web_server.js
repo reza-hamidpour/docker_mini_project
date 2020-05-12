@@ -2,10 +2,9 @@ var express = require('express');
 var mongoClient = require('mongodb').MongoClient;
 // Constants
 const PORT = 3000;
-const HOST = 'localhost';
 var db;
 
-mongoClient.connect('mongodb://localhost:27017/', function(err, client){
+mongoClient.connect('mongodb://mongo:27017/', function(err, client){
     if(err) throw err;
     db = client.db("messages");
 
@@ -49,7 +48,7 @@ async function get_all_messages(){
     return messages;
 }
 
-app.listen(PORT, HOST);
-console.log('Running on http://' + HOST + ':' + PORT);
+app.listen(PORT);
+console.log('Running on http://localhost:' + PORT);
 
 
