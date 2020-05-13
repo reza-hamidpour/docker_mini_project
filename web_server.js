@@ -1,11 +1,11 @@
 var express = require('express');
 var mongoClient = require('mongodb').MongoClient;
 // Constants
-const mongoServer = process.env.MONGO || 'mongodb://localhost:27017';
+const mongoServer = process.env.MONGO_URL || 'mongodb://localhost:27017';
 const PORT = process.env.PORT || 3000;
 var db;
 
-mongoClient.connect('mongodb://localhost:27017/', function(err, client){
+mongoClient.connect(mongoServer, function(err, client){
     if(err) throw err;
     db = client.db("messages");
 
