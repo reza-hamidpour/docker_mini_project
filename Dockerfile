@@ -1,10 +1,11 @@
 FROM node:10
 
 WORKDIR /usr/src/app
-
+ENV MONGO=mongodb://mongodb:27017
 COPY package*.json ./
 
-RUN npm install 
+RUN npm install express --save
+RUN npm install mongodb --save 
 
 COPY . .
 
