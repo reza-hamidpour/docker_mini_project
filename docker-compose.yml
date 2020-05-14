@@ -6,8 +6,8 @@ services:
   networks:
      - mongonet
  webapp:
-  image: https://github.com/reza-hamidpour/docker_mini_project.git
   build: .
+  image: webapp
   ports:
      - 3000:3000
   depends_on:
