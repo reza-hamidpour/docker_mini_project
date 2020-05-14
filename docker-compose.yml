@@ -1,12 +1,20 @@
-version: "1"
+version: "3"
 services:
  mongodb:
-    image: mongo:3.2
-    container_name: mongodb
+  image: mongo
+  container_name: mongodb
+  networks:
+     - mongonet
  webapp:
-    image: https://github.com/reza-hamidpour/docker_mini_project.git
-    build: .
-    ports: "3000:3000"
-    depends_on: mongo
-    environment:
-        MONGO_URL: "mongodb://mongodb:27017/"
+  image: https://github.com/reza-hamidpour/docker_mini_project.git
+  build: .
+  ports:
+     - 3000:3000
+  depends_on:
+     - mongodb
+  networks:
+     - mongonet
+  environment:
+     MONGO_URL: "mongodb://mongodb:27017/"
+networks:
+  mongonet:
