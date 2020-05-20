@@ -6,11 +6,17 @@ const mongoServer = process.env.MONGO_URL || 'mongodb://localhost:27017';
 const PORT = process.env.PORT || 3000;
 var db;
 
-mongoClient.connect(mongoServer, function(err, client){
-    if(err) throw err;
-    db = client.db("messages");
+try{
+    mongoClient.connect(mongoServer, function(err, client){
+        if(err) throw err;
+        db = client.db("messages");
+    
+    });
+}
+catch (error){
+    console.log("You didn't connect to database.");    
+}
 
-});
 // App
 const app = express();
 app.get('/', (req, res) => {
