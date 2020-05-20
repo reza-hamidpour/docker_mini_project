@@ -1,5 +1,6 @@
 var express = require('express');
 var mongoClient = require('mongodb').MongoClient;
+var ipObject = require("ip");
 // Constants
 const mongoServer = process.env.MONGO_URL || 'mongodb://localhost:27017';
 const PORT = process.env.PORT || 3000;
@@ -13,8 +14,12 @@ mongoClient.connect(mongoServer, function(err, client){
 // App
 const app = express();
 app.get('/', (req, res) => {
-  res.send('A simple Node.js app.');
-  res.send('Cloud Computing Class');
+  var host_ip = ipObject.address();
+  message = "<h1>Cloud Computing Class</h1><br>" + 
+            "<p>A simple Node.js app.</p><br>" + 
+            "<h4 style='color:red;'>Host IP Address:" + host_ip + "</h4>"
+  res.send(message);
+
 });
 
 app.get("/student/:id", function(req, res){
