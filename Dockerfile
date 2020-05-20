@@ -5,7 +5,7 @@ COPY package*.json ./
 
 RUN npm install express --save
 RUN npm install mongodb --save 
-
+RUN npm install ip --save
 COPY . .
 
 EXPOSE 3000
