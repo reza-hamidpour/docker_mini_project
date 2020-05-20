@@ -2,20 +2,17 @@ var express = require('express');
 var mongoClient = require('mongodb').MongoClient;
 var ipObject = require("ip");
 // Constants
-const mongoServer = process.env.MONGO_URL || 'mongodb://localhost:27017';
+const mongoServer = process.env.MONGO_URL || 'mongodb://localhost:2701';
 const PORT = process.env.PORT || 3000;
 var db;
 
-try{
-    mongoClient.connect(mongoServer, function(err, client){
-        if(err) throw err;
+mongoClient.connect(mongoServer, function(err, client){
+    if(err){
+        console.log("You didn't connect to database.")
+    }else{
         db = client.db("messages");
-    
-    });
-}
-catch (error){
-    console.log("You didn't connect to database.");    
-}
+    }
+});
 
 // App
 const app = express();
